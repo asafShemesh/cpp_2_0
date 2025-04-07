@@ -21,7 +21,6 @@ namespace graph
         }
     }
 
-    // DFS Helper - Fix to fully traverse the graph, covering disconnected components or cycles
     void dfsHelper(const Graph &g, int vertex, bool *visited, Graph &dfsTree)
     {
         visited[vertex] = true;
@@ -38,7 +37,6 @@ namespace graph
             }
         }
 
-        // Start DFS from unvisited nodes to cover all disconnected components
         for (int i = 0; i < numVertices; i++) {
             if (!visited[i]) {
                 dfsHelper(g, i, visited, dfsTree);
@@ -46,7 +44,6 @@ namespace graph
         }
     }
 
-    // BFS Algorithm
     Graph Algorithms::bfs(const Graph &g, int start)
     {
         int numVertices = g.getNumVertices();
@@ -78,7 +75,6 @@ namespace graph
         return bfsTree;
     }
 
-    // DFS Algorithm
     Graph Algorithms::dfs(const Graph &g, int start)
     {
         int numVertices = g.getNumVertices();
@@ -87,7 +83,6 @@ namespace graph
 
         dfsHelper(g, start, visited, dfsForest);
 
-        // Start DFS from unvisited nodes to cover all disconnected components
         for (int i = 0; i < numVertices; i++)
         {
             if (!visited[i])
@@ -100,7 +95,6 @@ namespace graph
         return dfsForest;
     }
 
-    // Check for negative weights in the graph (for Dijkstra)
     bool Algorithms::hasNegativeWeight(const Graph &g)
     {
         for (int i = 0; i < g.getNumVertices(); ++i)
@@ -116,7 +110,6 @@ namespace graph
         return false;
     }
 
-    // Dijkstra Algorithm
     Graph Algorithms::dijkstra(const Graph &g, int start)
     {
         if (hasNegativeWeight(g))
@@ -176,7 +169,6 @@ namespace graph
         return shortestTree;
     }
 
-    // Prim's Algorithm
     Graph Algorithms::prim(const Graph &g)
     {
         int numVertices = g.getNumVertices();
