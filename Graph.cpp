@@ -18,13 +18,19 @@ Graph::~Graph() {
     delete[] adjacencyList;
 }
 
-void Graph::addEdge(int src, int dest, int weight) {
-    if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices) {
+void Graph::addEdge(int src, int dest, int weight = 1) {
+    if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices || src==dest) {
         throw std::out_of_range("Vertex index out of range.");
     }
+    
+    if (adjacencyList[src][dest] != 0 && adjacencyList[dest][src]!=0 ) {
+        throw std::logic_error("Edge already exists between these vertices.");
+    }
+
     adjacencyList[src][dest] = weight;
-    adjacencyList[dest][src] = weight;
+    adjacencyList[dest][src] = weight; 
 }
+
 
 void Graph::removeEdge(int src, int dest) {
     if (src >= numVertices || dest >= numVertices || adjacencyList[src][dest] == 0) {
@@ -45,6 +51,7 @@ void Graph::print_graph() const {
         }
         std::cout << std::endl;
     }
+    
 }
 
 
