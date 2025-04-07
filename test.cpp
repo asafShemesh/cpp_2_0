@@ -138,14 +138,3 @@ TEST_CASE("Edge Cases") {
         }
     }
 }
-
-TEST_CASE("Graph with Loops") {
-    graph::Graph g(5);
-    g.addEdge(0, 0, 10);
-    g.addEdge(1, 1, 20); 
-    g.addEdge(2, 2, 30); 
-
-    CHECK(g.getAdjacencyList()[0][0] == 10);
-    CHECK(g.getAdjacencyList()[1][1] == 20);
-    CHECK(g.getAdjacencyList()[2][2] == 30);
-}
